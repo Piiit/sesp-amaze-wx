@@ -1,0 +1,85 @@
+###############################################################################
+# Project SDKs - wxWidgets
+# Created on: 23.03.2013
+#     Author: Julian
+###############################################################################
+
+-------------------------------------------------------------------------------
+| Windows x86/x64
+-------------------------------------------------------------------------------
+  To install wxWidgets for Windows go to:
+  http://sourceforge.net/projects/wxwindows/files/2.8.12/wxMSW-2.8.12-Setup.exe
+  and download the installer.
+  Run the guided installer and follow each step until it finishes.
+  You have to set a enviroment variable for its later use:
+    WX_HOME == c:\path\to\wxWidgets
+  Assuming that you have already installed the MinGW toolchain proceed with the
+  compilation of wxWidgets. To do so launch a DOS box and execute:
+    cd %WX_HOME%\build\msw
+    mingw32-make -f makefile.gcc UNICODE=1 SHARED=0 BUILD=release MONOLITHIC=0
+  and wait until the compilation finishes. Now you have to copy the setup.h:
+    cd %WX_HOME%\include\wx
+    copy msw\setup.h .
+  now you can leave the DOS box via exit.
+  
+  Create a new C++ project in Eclipse and set up your build targets e.g.
+  debug-win32 and release-win32. Now you have to modify some of the build
+  target options, to do so you have to go to the project properties and modify:
+    C/C++ Build -> Settings -> GCC C++ Compiler -> Preprocessor
+      add the preprocessor symbol _UNICODE
+    C/C++ Build -> Settings -> GCC C++ Compiler -> Includes
+      add to the include paths: ${WX_HOME} and ${WX_HOME}/include
+    C/C++ Build -> Settings -> MinGW C++ Linker -> Libraries
+      add to the library search path: ${WX_HOME}/lib/gcc_lib
+      add following wxWidget libraries:
+        wxmsw28u_core, wxbase28u
+      add also following Windows libraries:
+        advapi32, comctl32, comdlg32, gdi32, ole32, oleaut32, rpcrt4, uuid,
+        winmm, winspool, wsock32
+    C/C++ Build -> Settings -> MinGW C++ Linker -> Miscellaneous
+      add to the Linker flags: -mwindows
+    C/C++ General -> Indexer
+      set Enable project specific settings checkbox
+      choose under Build configuration the Use active build configuration
+  You have now configured successfully wxWidgets for the current build target
+  and you can save the settings by hitting the OK button.
+
+  Note:
+  You have to repeat each step of the project properties for each Windows build
+  target that you have created (also for release targets).
+
+-------------------------------------------------------------------------------
+| Linux x86/x64
+-------------------------------------------------------------------------------
+  To install wxWidgets for Linux go to:
+  http://sourceforge.net/projects/wxwindows/files/2.8.12/wxGTK-2.8.12.tar.gz
+  and download the package.
+  Extract all its content to your user home path and go to wxGTK-2.8.12 and
+  create a new folder 'buildGTK28u' in it.
+  Open a terminal window and execute following commands: 
+    sudo apt-get install libgtk2.0-dev
+    cd  ~/wxGTK-2.8.12/buildGTK28u
+    ../configure --enable-unicode --disable-shared --disable-debug --disable-monolithic
+    make
+    sudo make install
+    make clean
+    cd /usr/local/include
+    sudo ln -sv wx-2.8/wx wx
+  Now you have successfully installed wxWidgets and you can now create a
+  Eclipse C++ project. Set up your build targets e.g. debug-linux64 and
+  release-win32. Now you have to modify some of the build target options, to do
+  so you have to go to the project properties and modify:
+    C/C++ Build -> Settings -> GCC C++ Compiler -> Miscellaneous
+      append to the Other flags: `wx-config --cppflags`
+    C/C++ Build -> Settings -> GCC C++ Linker
+      under Expert settings move ${FLAGS} behind ${INPUTS}
+    C/C++ Build -> Settings -> GCC C++ Linker -> Miscellaneous
+      append to the Linker flags: `wx-config --libs`
+TODO: Indexer settings
+
+  You have now configured successfully wxWidgets for the current build target
+  and you can save the settings by hitting the OK button.
+  
+  Note:
+  You have to repeat each step of the project properties for each Windows build
+  target that you have created (also for release targets).
