@@ -1,0 +1,50 @@
+###############################################################################
+# Project wx
+# Created on: 23.03.2013
+#     Author: Julian
+###############################################################################
+
+-------------------------------------------------------------------------------
+| About the development enviroment (installation details)
+-------------------------------------------------------------------------------
+  > Windows:
+      o Eclipse CDT Juno SR2 x64
+          - Subclipse 1.8.x
+          - Subclipse Client Adapter 1.8.x
+          - Subversion JavaHL 1.7.x
+      o MinGW x86
+          - gcc 4.6.2
+          - g++ 4.6.2
+          - gdb 7.4
+      o wxWidgets 2.8.12
+  > Linux:
+      o Eclipse CDT Juno SR2 x64
+          - Subclipse 1.8.x
+          - Subclipse Client Adapter 1.8.x
+          - SVNKit 1.7.x
+          - SVNKit Client Adapter 1.7.x
+          - JNA Library 3.4.x
+      o Built in tools
+          - gcc 4.6.3
+          - g++ 4.6.3
+          - gdb 7.4
+          - make 3.81
+
+-------------------------------------------------------------------------------
+| Build targets
+-------------------------------------------------------------------------------
+  > Windows:
+      o debug-win32 (using MinGW x86)
+      o release-win32 (using MinGW x86)
+  > Linux:
+      o debug-linux64 (using Linux x64 tools)
+      o release-linux64 (using Linux x64 tools)
+      
+  Note:
+  If you want to add other build targets, right click on the project go to
+  Properties, select C/C++ Build, choose Manage Configurations... and add your
+  debug and release configurations using the naming convention build-platform.
+  In the Create New Configuration window you have to choose the
+  Import predefined radio button, then select your installed compiler to import
+  the settings of current configuration.
+  
