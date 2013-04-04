@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
 	std::cout << "TEST" << std::endl;
-	std::cin.get();
+    //std::cin.get();
 	/*QApplication a(argc, argv);
 	MazeWindow w;
 	w.show();
