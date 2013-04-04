@@ -7,8 +7,12 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./MazeWindow.h
+HEADERS += ./MazeWindow.h \
+    PathAlgorithm.h \
+    MazeMap.h \
+    KissAlgorithm.h
 SOURCES += ./main.cpp \
-    ./MazeWindow.cpp
+    ./MazeWindow.cpp \
+    KissAlgorithm.cpp
 FORMS += ./MazeWindow.ui
 RESOURCES += MazeWindow.qrc
