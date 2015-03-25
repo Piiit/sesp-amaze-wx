@@ -1,0 +1,1 @@
+Eclipse C++ GUI test project for multi platform development
